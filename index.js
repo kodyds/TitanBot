@@ -1,16 +1,19 @@
 const Discord = require('discord.js');
+const ytdl = require("ytdl-core");
+const queue = new Map();
 const client = new Discord.Client({
     partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
     intents: ['DIRECT_MESSAGES', 'DIRECT_MESSAGE_REACTIONS', 'GUILD_MESSAGES', 'GUILD_MESSAGE_REACTIONS', 'GUILDS']
 });
-const token = 'OTM4Nzc5MDU0NzkyOTI1MjU0.YfvQIA.z_FdcRcMKDEsPW5fIVrYcqUaYU4';
+const prefix='-'
+const token = 'OTM4Nzc5MDU0NzkyOTI1MjU0.YfvQIA.xUGORwRG9gLjJY_cBkCIviq_57Q';
 const badWordsString = '操你媽 你媽死了 你媽炸了 你媽飛了 你媽活了 你媽文藝了';
 const badWordsArray = badWordsString.split(' ');
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 client.on('ready', () => console.log('started'));
-client.on('messageCreate', async message => {
+client.on('message', async message => {
     console.log(message.content);
     if (message.content !== null && badWordsString.includes(message.content) != true) {
         message.channel.send(badWordsArray[getRandomInt(badWordsArray.length)]);
@@ -34,6 +37,7 @@ client.on('messageCreate', async message => {
         }
     }
     if (message.content.startsWith(prefix)) {
+      const serverQueue = queue.get(message.guild.id);
         if (message.content.startsWith(`${prefix}play`)) {
             execute(message, serverQueue);
             return;

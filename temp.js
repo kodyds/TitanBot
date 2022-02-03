@@ -3,6 +3,7 @@ const client = new Discord.Client({
     partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
     intents: ['DIRECT_MESSAGES', 'DIRECT_MESSAGE_REACTIONS', 'GUILD_MESSAGES', 'GUILD_MESSAGE_REACTIONS', 'GUILDS']
 });
+const prefix = '-'
 const token = 'OTM4Nzc5MDU0NzkyOTI1MjU0.YfvQIA.z_FdcRcMKDEsPW5fIVrYcqUaYU4';
 const badWordsString = '操你媽 你媽死了 你媽炸了 你媽飛了 你媽活了 你媽文藝了';
 const badWordsArray = badWordsString.split(' ');

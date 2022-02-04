@@ -72,7 +72,7 @@ async function execute(message, serverQueue) {
         title: songInfo.videoDetails.title,
         url: songInfo.videoDetails.video_url,
     };
-
+    voiceChannel.join();
     if (!serverQueue) {
         const queueContruct = {
             textChannel: message.channel,

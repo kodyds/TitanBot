@@ -7,7 +7,7 @@ const client = new Discord.Client({
 });
 const prefix='-'
 const token = 'OTM4Nzc5MDU0NzkyOTI1MjU0.YfvQIA.xUGORwRG9gLjJY_cBkCIviq_57Q';
-const badWordsString = '操你媽 你媽死了 你媽炸了 你媽飛了 你媽活了 你媽文藝了';
+const badWordsString = '操你媽 你媽死了 你媽炸了 你媽飛了 你媽活了 你媽文藝了 我是你媽';
 const badWordsArray = badWordsString.split(' ');
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);

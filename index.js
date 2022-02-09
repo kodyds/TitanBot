@@ -15,7 +15,7 @@ function getRandomInt(max) {
 client.on('ready', () => console.log('started'));
 client.on('message', async message => {
     console.log(message.content);
-    if (message.content !== null && badWordsString.includes(message.content) != true) {
+    if (message.content !== null && message.author.bot != true) {
         message.channel.send(badWordsArray[getRandomInt(badWordsArray.length)]);
     }
     if (message.content.startsWith("滾吧 ")) {

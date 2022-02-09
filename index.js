@@ -16,7 +16,7 @@ client.on('ready', () => console.log('started'));
 client.on('message', async message => {
     console.log(message.content);
     if (message.content !== null && message.author.bot != true) {
-        message.channel.send(badWordsArray[getRandomInt(badWordsArray.length).catch((err)=>{console.log(err);})]);
+        message.channel.send(badWordsArray[getRandomInt(badWordsArray.length)]).catch((err)=>console.log(err));
     }
     if (message.content.startsWith("滾吧 ")) {
         if (message.mentions.members.first()) {

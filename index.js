@@ -122,7 +122,7 @@ function stop(message, serverQueue) {
         return message.channel.send("There is no song that I could stop!").catch((err)=>{console.log(err)});
 
     serverQueue.songs = [];
-    serverQueue.connection.dispatcher.end();
+    serverQueue.connection.dispatcher.end().catch((err)=>console.log(err));
 }
 
 function play(guild, song) {

@@ -37,7 +37,7 @@ client.on('message', async message => {
             });
         }
     }
-    if (message.content.startsWith("辛曉晴"||prefix)) {
+    if (message.content.startsWith("辛曉晴")||message.content.startsWith(prefix)) {
         if (isReady==false) return;
         isReady=false;
         let voiceChannel = message.member.voice.channel;

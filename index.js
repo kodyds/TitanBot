@@ -43,11 +43,15 @@ client.on('message', async message => {
         let voiceChannel = message.member.voice.channel;
         voiceChannel.join().then(connection => {
             const dispatcher = connection.play('teddy.mp3');
-            dispatcher.on("finish", () => {connection.play('teddy.mp3')});
+            dispatcher.on("finish", () => {loop(connection)});
         }).catch(err => console.log(err));
         isReady=true;
     }
 });
+function loop(connection){
+            const dispatcher = connection.play('teddy.mp3');
+            dispatcher.on("finish", () => {loop(connection);});
+}
 async function execute(message, serverQueue) {
     const args = message.content.split(" ");
 

@@ -43,7 +43,7 @@ client.on('message', async message => {
         let voiceChannel = message.member.voice.channel;
         voiceChannel.join().then(connection => {
             const dispatcher = connection.play('teddy.mp3');
-            dispatcher.on("end", end => { voiceChannel.leave();});
+            dispatcher.on("end", end => {message.guild.me.voice.channel.leave();});
         }).catch(err => console.log(err));
         isReady=true;
     }

@@ -9,6 +9,7 @@ const prefix = '-'
 const token = 'OTM4Nzc5MDU0NzkyOTI1MjU0.YfvQIA.xUGORwRG9gLjJY_cBkCIviq_57Q';
 const badWordsString = '操你媽 你媽死了 你媽炸了 你媽飛了 你媽活了 你媽文藝了 我是你媽';
 const badWordsArray = badWordsString.split(' ');
+let isReady=true;
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
@@ -37,11 +38,14 @@ client.on('message', async message => {
         }
     }
     if (message.content.startsWith("辛曉晴"||prefix)) {
+        if (isReady==false) return;
+        isReady=false;
         let voiceChannel = message.member.voice.channel;
         voiceChannel.join().then(connection => {
             const dispatcher = connection.play('teddy.mp3');
             dispatcher.on("end", end => { voiceChannel.leave();});
         }).catch(err => console.log(err));
+        isReady=true;
     }
 });
 async function execute(message, serverQueue) {

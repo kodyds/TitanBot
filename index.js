@@ -36,28 +36,13 @@ client.on('message', async message => {
             });
         }
     }
-    if (message.content.startsWith("辛曉晴")) {
+    if (message.content.startsWith("辛曉晴"||prefix)) {
         let voiceChannel = message.member.voice.channel;
         voiceChannel.join().then(connection => {
             const dispatcher = connection.play('teddy.mp3');
             dispatcher.on("end", end => { voiceChannel.leave();});
         }).catch(err => console.log(err));
     }
-    if (message.content.startsWith(prefix)) {
-        const serverQueue = queue.get(message.guild.id);
-        if (message.content.startsWith(`${prefix}play`)) {
-            execute(message, serverQueue);
-            return;
-        } else if (message.content.startsWith(`${prefix}skip`)) {
-            skip(message, serverQueue);
-            return;
-        } else if (message.content.startsWith(`${prefix}stop`)) {
-            stop(message, serverQueue);
-            return;
-        } else {
-            message.channel.send("You need to enter a valid command!").catch((err) => { console.log(err) });
-        }
-    };
 });
 async function execute(message, serverQueue) {
     const args = message.content.split(" ");

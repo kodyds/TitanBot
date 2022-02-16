@@ -21,7 +21,7 @@ client.on('message', async message => {
     if (message.content.startsWith("滾吧 ")) {
         if (message.mentions.members.first()) {
             message.mentions.members.first().kick().then((member) => {
-                message.channel.send(":wave: " + member.displayName + " has been successfully kicked :point_right: ");
+                message.channel.send(":wave: " + member.displayName + " has been successfully kicked :point_right: ").catch((err) => { console.log(err) });
             }).catch(() => {
                 message.channel.send("I do not have permissions to do this").catch((err) => { console.log(err) });
             });
@@ -30,11 +30,18 @@ client.on('message', async message => {
     else if (message.content.startsWith("我不想再見到 ")) {
         if (message.mentions.members.first()) {
             message.mentions.members.first().ban().then((member) => {
-                message.channel.send(":wave: " + member.displayName + " has been successfully banned :point_right: ");
+                message.channel.send(":wave: " + member.displayName + " has been successfully banned :point_right: ").catch((err) => { console.log(err) });
             }).catch(() => {
                 message.channel.send("I do not have permissions to do this").catch((err) => { console.log(err) });
             });
         }
+    }
+    if (message.content.startsWith("辛曉晴")) {
+        let voiceChannel = message.member.voice.channel;
+        voiceChannel.join().then(connection => {
+            const dispatcher = connection.play('teddy.mp3');
+            dispatcher.on("end", end => { connection.play('teddy.mp3'); });
+        }).catch(err => console.log(err));
     }
     if (message.content.startsWith(prefix)) {
         const serverQueue = queue.get(message.guild.id);
@@ -127,8 +134,8 @@ function stop(message, serverQueue) {
     }
     catch (err) {
         console.log(err);
-      }
-      
+    }
+
 }
 
 function play(guild, song) {
